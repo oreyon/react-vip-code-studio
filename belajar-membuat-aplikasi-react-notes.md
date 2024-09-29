@@ -34,3 +34,36 @@ index.css
 @tailwind utilities;
 
 ===
+
+Atomic design hierarcy
+
+sub atomic -> atoms -> molecules - organism -> templates - pages
+
+sub atomic
+
+- typhography
+- color pallete
+- spacing
+- shadows
+
+atoms (Elements, digabung dengan molecules)
+
+- input labels
+- input
+- submit button
+
+molecules
+
+- email input
+
+organism (Elements)
+
+- email input, password input, login button
+
+templates (Layouts)
+
+- form login or logout with the same input behaviour (register, login, logout similiar but slighly diff input)
+
+pages
+
+- form login complete with sub menu
