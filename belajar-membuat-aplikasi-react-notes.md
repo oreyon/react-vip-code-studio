@@ -67,3 +67,14 @@ templates (Layouts)
 pages
 
 - form login complete with sub menu
+
+===
+
+write props for children
+
+type AuthLayoutsProps = {  
+ titleprops: string;
+ children?: React.ReactNode;
+}
+
+====
