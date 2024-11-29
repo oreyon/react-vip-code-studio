@@ -1,18 +1,23 @@
 import React from 'react';
 
 type ButtonProps = {
-	classnameprops?: string;
+	classNameProps?: string;
+	onClick?: () => void;
+	typeProps?: 'button' | 'submit' | 'reset';
 	children?: React.ReactNode;
 };
 
 const Button = ({
-	classnameprops = 'bg-black',
+	classNameProps = 'bg-black',
 	children = '...',
+	typeProps = 'button',
+	onClick,
 }: ButtonProps) => {
 	return (
 		<button
-			className={`h-10 px-6 font-semibold rounded-md ${classnameprops} text-white`}
-			type='submit'>
+			className={`h-10 px-6 font-semibold rounded-md ${classNameProps} text-white`}
+			type={typeProps}
+			onClick={onClick}>
 			{children}
 		</button>
 	);
