@@ -1,12 +1,12 @@
 type LabelProps = {
-	htmlforprops: string;
+	htmlforProps: string;
 	children?: React.ReactNode;
 };
 
 const Label = (props: LabelProps) => {
 	return (
 		<label
-			htmlFor={props.htmlforprops}
+			htmlFor={props.htmlforProps}
 			className='block text-slate-700 text-sm font-bold mb-2'>
 			{props.children}
 		</label>

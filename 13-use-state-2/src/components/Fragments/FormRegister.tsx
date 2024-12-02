@@ -5,30 +5,30 @@ const FormRegister = () => {
 	return (
 		<form action=''>
 			<InputForm
-				labelprops='Fullname'
-				nameprops='fullname'
-				typeprops='text'
-				placeholderprops='John Doe'
+				labelProps='Fullname'
+				nameProps='fullname'
+				typeProps='text'
+				placeholderProps='John Doe'
 			/>
 			<InputForm
-				labelprops='Email'
-				nameprops='email'
-				typeprops='email'
-				placeholderprops='example@mail.com'
+				labelProps='Email'
+				nameProps='email'
+				typeProps='email'
+				placeholderProps='example@mail.com'
 			/>
 			<InputForm
-				labelprops='Password'
-				nameprops='password'
-				typeprops='password'
-				placeholderprops='*******'
+				labelProps='Password'
+				nameProps='password'
+				typeProps='password'
+				placeholderProps='*******'
 			/>
 			<InputForm
-				labelprops='Confirm Password'
-				nameprops='confirm-password'
-				typeprops='password'
-				placeholderprops='*******'
+				labelProps='Confirm Password'
+				nameProps='confirm-password'
+				typeProps='password'
+				placeholderProps='*******'
 			/>
-			<Button classnameprops='bg-blue-600 w-full'>Register</Button>
+			<Button classNameProps='bg-blue-600 w-full'>Register</Button>
 		</form>
 	);
 };

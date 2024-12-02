@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 
 type AuthLayoutsProps = {
-	titleprops: string;
-	typeprops: string;
+	titleProps: string;
+	typeProps: string;
 	children?: React.ReactNode;
 };
 
-const AuthLayouts = ({ titleprops, typeprops, children }: AuthLayoutsProps) => {
+const AuthLayouts = ({ titleProps, typeProps, children }: AuthLayoutsProps) => {
 	return (
 		<div className='w-full max-w-xs'>
-			<h1 className='text-blue-600 text-3xl font-bold mb-2'>{titleprops}</h1>
+			<h1 className='text-blue-600 text-3xl font-bold mb-2'>{titleProps}</h1>
 			<p className='font-medium text-slate-500 mb-8'>
 				Welcome, please enter your details
 			</p>
@@ -31,17 +31,17 @@ const AuthLayouts = ({ titleprops, typeprops, children }: AuthLayoutsProps) => {
 				)}
 			</p> */}
 			{/* cara 2: pass on another component */}
-			<Navigation typeprops={typeprops} />
+			<Navigation typeProps={typeProps} />
 		</div>
 	);
 };
 
 type NavigationProps = {
-	typeprops: string;
+	typeProps: string;
 };
 
-export const Navigation = ({ typeprops }: NavigationProps) => {
-	if (typeprops === `login`) {
+export const Navigation = ({ typeProps }: NavigationProps) => {
+	if (typeProps === `login`) {
 		return (
 			<p className='text-sm mt-5 text-center'>
 				Don't have an account?{' '}

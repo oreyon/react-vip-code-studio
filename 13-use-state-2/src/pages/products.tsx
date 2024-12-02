@@ -3,7 +3,15 @@ import CardProduct from '../components/Fragments/CardProduct.tsx';
 import Button from '../components/Elements/Button/Button.tsx';
 import Counter from '../components/Fragments/Counter.tsx';
 
-const products = [
+type Product = {
+	id: number;
+	name: string;
+	price: string;
+	image: string;
+	description: string;
+};
+
+const products: Product[] = [
 	{
 		id: 1,
 		name: 'Wuthering Heights',
@@ -57,7 +65,7 @@ const ProductsPage = () => {
 				</Button>
 			</div>
 			<div className='flex justify-center py-5'>
-				{products.map((product) => (
+				{products.map((product: Product) => (
 					<CardProduct key={product.id}>
 						<CardProduct.Header
 							hrefProps={'#'}

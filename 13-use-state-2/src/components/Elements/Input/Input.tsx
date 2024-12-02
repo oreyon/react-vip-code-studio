@@ -1,17 +1,17 @@
 type InputProps = {
-	typeprops: string;
-	placeholderprops: string;
-	nameprops: string;
+	typeProps: string;
+	placeholderProps: string;
+	nameProps: string;
 };
 
-const Input = ({ typeprops, placeholderprops, nameprops }: InputProps) => {
+const Input = ({ typeProps, placeholderProps, nameProps }: InputProps) => {
 	return (
 		<input
-			type={typeprops}
-			name={nameprops}
-			id={nameprops}
+			type={typeProps}
+			name={nameProps}
+			id={nameProps}
 			className='text-sm border rounded w-full py-2 px-3 text-slate-700 placeholder: opacity-50'
-			placeholder={placeholderprops}
+			placeholder={placeholderProps}
 		/>
 	);
 };

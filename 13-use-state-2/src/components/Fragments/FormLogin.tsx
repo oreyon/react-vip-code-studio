@@ -32,19 +32,20 @@ const FormLogin = () => {
 		// redirect to products
 		window.location.href = '/products';
 	};
+
 	return (
 		<form action='' onSubmit={handleLogin}>
 			<InputForm
-				labelprops='Email'
-				nameprops='email'
-				typeprops='email'
-				placeholderprops='example@mail.com'
+				labelProps='Email'
+				nameProps='email'
+				typeProps='email'
+				placeholderProps='example@mail.com'
 			/>
 			<InputForm
-				labelprops='Password'
-				nameprops='password'
-				typeprops='password'
-				placeholderprops='*******'
+				labelProps='Password'
+				nameProps='password'
+				typeProps='password'
+				placeholderProps='*******'
 			/>
 			<Button typeProps='submit' classNameProps='bg-blue-600 w-full'>
 				Login

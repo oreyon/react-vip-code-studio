@@ -2,25 +2,25 @@ import Input from './Input';
 import Label from './Label';
 
 type InputFormProps = {
-	labelprops?: string;
-	nameprops: string;
-	typeprops: string;
-	placeholderprops: string;
+	labelProps?: string;
+	nameProps: string;
+	typeProps: string;
+	placeholderProps: string;
 };
 
 const InputForm = ({
-	labelprops,
-	nameprops,
-	typeprops,
-	placeholderprops,
+	labelProps,
+	nameProps,
+	typeProps,
+	placeholderProps,
 }: InputFormProps) => {
 	return (
 		<div className='mb-6'>
-			<Label htmlforprops={nameprops}>{labelprops}</Label>
+			<Label htmlforProps={nameProps}>{labelProps}</Label>
 			<Input
-				nameprops={nameprops}
-				typeprops={typeprops}
-				placeholderprops={placeholderprops}
+				nameProps={nameProps}
+				typeProps={typeProps}
+				placeholderProps={placeholderProps}
 			/>
 		</div>
 	);
