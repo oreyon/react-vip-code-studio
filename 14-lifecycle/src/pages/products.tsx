@@ -2,6 +2,7 @@ import { Fragment } from 'react/jsx-runtime';
 import CardProduct from '../components/Fragments/CardProduct.tsx';
 import Button from '../components/Elements/Button/Button.tsx';
 import { useState } from 'react';
+import Counter from '../components/Fragments/Counter.tsx';
 
 export type Product = {
 	id: number;
@@ -157,6 +158,9 @@ const ProductsPage = () => {
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div className='flex justify-center mt-5 mb-5'>
+				<Counter></Counter>
 			</div>
 		</Fragment>
 	);
