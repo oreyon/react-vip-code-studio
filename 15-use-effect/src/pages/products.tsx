@@ -1,8 +1,7 @@
 import { Fragment } from 'react/jsx-runtime';
 import CardProduct from '../components/Fragments/CardProduct.tsx';
 import Button from '../components/Elements/Button/Button.tsx';
-import { useState } from 'react';
-import Counter from '../components/Fragments/Counter.tsx';
+import { useEffect, useState } from 'react';
 
 export type Product = {
 	id: number;
@@ -56,6 +55,29 @@ const emailLogin = localStorage.getItem('email');
 
 const ProductsPage = () => {
 	const [cart, setCart] = useState<Cart[]>([]);
+	const [totalPrice, setTotalPrice] = useState<number>(0);
+
+	// Listening cart data from local storage
+	useEffect(() => {
+		setCart(JSON.parse(localStorage.getItem('cart') || '[]'));
+	}, []);
+
+	// Listening the total price of the cart
+	useEffect(() => {
+		if (cart.length > 0) {
+			// Calculate the total price of the cart
+			const totalPrice = cart.reduce(
+				(total: number, item: Cart) => total + item.total,
+				0
+			);
+			setTotalPrice(totalPrice);
+
+			// save cart to local storage
+			localStorage.setItem('cart', JSON.stringify(cart));
+		} else {
+			setTotalPrice(0);
+		}
+	}, [cart]);
 
 	const handleAddToCart = (product: Product) => {
 		const existingProduct = cart.find((item: Cart) => item.id === product.id);
@@ -131,10 +153,11 @@ const ProductsPage = () => {
 								<th>Product</th>
 								<th>Price</th>
 								<th>Quantity</th>
-								<th>Total</th>
+								<th>Total Price</th>
 							</tr>
 						</thead>
 						<tbody>
+							{/* cart product */}
 							{cart.map((item: Cart) => (
 								<tr key={item.id}>
 									<td>{item.title}</td>
@@ -155,12 +178,28 @@ const ProductsPage = () => {
 									</td>
 								</tr>
 							))}
+							{/* cart total product */}
+							<tr>
+								<td colSpan={3} className='text-right font-bold'>
+									{/* count total product form quantity item in cart */}
+									Total Bill (
+									{cart.reduce(
+										(total: number, item: Cart) => total + item.quantity,
+										0
+									)}{' '}
+									Products)
+								</td>
+								<td className='font-bold'>
+									{totalPrice.toLocaleString('id-ID', {
+										style: 'currency',
+										currency: 'IDR',
+										maximumFractionDigits: 0,
+									})}
+								</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
-			</div>
-			<div className='flex justify-center mt-5 mb-5'>
-				<Counter></Counter>
 			</div>
 		</Fragment>
 	);

@@ -78,3 +78,16 @@ type AuthLayoutsProps = {
 }
 
 ====
+
+Trivia:
+useState = a condition in component. a variable. component wil re-render when variable is changed.
+
+useEffect = a way to listen condition. run when deppendencies is change.
+
+useReft = keep a value that dont need for rendering. antonym of useEffect
+
+JSON Parse = convert string to become json object
+
+JSON Stringfy = convert JSON object to become text string
+
+====
