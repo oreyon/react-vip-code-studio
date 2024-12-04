@@ -1,7 +1,7 @@
 import { Fragment } from 'react/jsx-runtime';
 import CardProduct from '../components/Fragments/CardProduct.tsx';
 import Button from '../components/Elements/Button/Button.tsx';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export type Product = {
 	id: number;
@@ -56,6 +56,8 @@ const emailLogin = localStorage.getItem('email');
 const ProductsPage = () => {
 	const [cart, setCart] = useState<Cart[]>([]);
 	const [totalPrice, setTotalPrice] = useState<number>(0);
+	// set initial data for total bill
+	const totalBillRef = useRef<HTMLTableRowElement>(null);
 
 	// Listening cart data from local storage
 	useEffect(() => {
@@ -76,6 +78,17 @@ const ProductsPage = () => {
 			localStorage.setItem('cart', JSON.stringify(cart));
 		} else {
 			setTotalPrice(0);
+		}
+	}, [cart]);
+
+	// Show or hide the total bill row if data in the cart is empty
+	useEffect(() => {
+		if (totalBillRef.current) {
+			if (cart.length > 0) {
+				totalBillRef.current.style.display = 'table-row';
+			} else {
+				totalBillRef.current.style.display = 'none';
+			}
 		}
 	}, [cart]);
 
@@ -115,6 +128,44 @@ const ProductsPage = () => {
 
 		window.location.href = '/';
 	};
+
+	// example useRef in cart items, data saved to local storage but not rendered
+	// const cartRef = useRef<Cart[]>(
+	// 	JSON.parse(localStorage.getItem('cart') || '[]')
+	// );
+
+	// const handleAddToCartRef = (product: Product) => {
+	// 	const existingProduct = cartRef.current.find(
+	// 		(item: Cart) => item.id === product.id
+	// 	);
+
+	// 	if (existingProduct) {
+	// 		// Update the quantity and total for an existing item
+	// 		cartRef.current = cartRef.current.map(
+	// 			(item: Cart): Cart =>
+	// 				item.id === product.id
+	// 					? {
+	// 							...item,
+	// 							quantity: item.quantity + 1,
+	// 							total: item.total + product.price,
+	// 					  }
+	// 					: item
+	// 		);
+	// 	} else {
+	// 		// Add a new item to the cart
+	// 		cartRef.current = [
+	// 			...cartRef.current,
+	// 			{
+	// 				...product,
+	// 				quantity: 1,
+	// 				total: product.price,
+	// 			},
+	// 		];
+	// 	}
+
+	// 	// Save the updated cart to local storage
+	// 	localStorage.setItem('cart', JSON.stringify(cartRef.current));
+	// };
 
 	return (
 		<Fragment>
@@ -179,8 +230,9 @@ const ProductsPage = () => {
 								</tr>
 							))}
 							{/* cart total product */}
-							<tr>
-								<td colSpan={3} className='text-right font-bold'>
+
+							<tr ref={totalBillRef}>
+								<td colSpan={3} className='text-left font-bold'>
 									{/* count total product form quantity item in cart */}
 									Total Bill (
 									{cart.reduce(

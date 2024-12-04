@@ -1,7 +1,17 @@
+import { useEffect, useRef } from 'react';
 import Button from '../Elements/Button/Button';
 import InputForm from '../Elements/Input';
 
 const FormLogin = () => {
+	const emailRef = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		// focus on email input when component is mounted
+		if (emailRef.current) {
+			emailRef.current.focus();
+		}
+	}, []);
+
 	const handleLogin = (event: React.BaseSyntheticEvent<Event>) => {
 		event.preventDefault();
 
@@ -40,6 +50,8 @@ const FormLogin = () => {
 				nameProps='email'
 				typeProps='email'
 				placeholderProps='example@mail.com'
+				// refProps={emailRef}
+				ref={emailRef}
 			/>
 			<InputForm
 				labelProps='Password'
