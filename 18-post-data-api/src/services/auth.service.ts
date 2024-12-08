@@ -1,51 +1,51 @@
-import api from './axios.service';
+import axios, { AxiosResponse } from 'axios';
+import { api } from './product.service';
+import { jwtDecode, JwtPayload } from 'jwt-decode';
 
-interface RegisterResponse {
-	code: number;
-	status: string;
-	data: {
-		id: string;
-		username: string;
-		email: string;
-		emailVerificationToken: string;
-	};
+type LoginData = {
+	username: string;
+	password: string;
+};
+
+/*
+username: johnd
+password: m38rmF$
+
+username: donero
+password: ewedon
+*/
+
+export const login = async (loginData: LoginData): Promise<void> => {
+	try {
+		const response: AxiosResponse = await api.post('/auth/login', {
+			username: loginData.username,
+			password: loginData.password,
+		});
+		if (response.status === 200) {
+			console.log('Login success:', response.data);
+			localStorage.setItem('token', response.data.token);
+			window.location.href = '/products';
+		} else {
+			throw new Error('Unexpected response status');
+		}
+	} catch (error: unknown) {
+		if (axios.isAxiosError(error)) {
+			throw new Error(error.response?.data);
+		} else {
+			throw new Error('An unexpected error occurred. Please try again.');
+		}
+	}
+};
+
+interface UserData extends JwtPayload {
+	user?: string;
 }
 
-// Registration
-export const registerUser = async (
-	email: string,
-	password: string,
-	username: string
-) => {
-	return await api.post<RegisterResponse>('/auth/register', {
-		email,
-		password,
-		username,
-	});
-};
-
-// Email Verification
-export const verifyEmail = async (
-	email: string,
-	emailVerificationToken: string
-) => {
-	return await api.post('/auth/verify-email', {
-		email,
-		emailVerificationToken,
-	});
-};
-
-// Login
-export const loginUser = async (email: string, password: string) => {
-	return await api.post('/auth/login', { email, password });
-};
-
-// Logout
-export const logoutUser = async () => {
-	return await api.post('/auth/logout');
-};
-
-// Get Current User
-export const getCurrentUser = async () => {
-	return await api.get('/auth/current');
+export const getUserData = async (token: string): Promise<string> => {
+	const decode: UserData = await jwtDecode(token);
+	if (decode.user) {
+		return decode.user;
+	} else {
+		throw new Error('Failed to fetch user data');
+	}
 };

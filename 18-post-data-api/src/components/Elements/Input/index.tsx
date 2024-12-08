@@ -7,6 +7,9 @@ type InputFormProps = {
 	nameProps: string;
 	typeProps: string;
 	placeholderProps: string;
+	onTogglePassword?: () => void;
+	isPasswordField?: boolean;
+	passwordVisible?: boolean;
 	// refProps?: ForwardedRef<HTMLInputElement>;
 };
 
@@ -14,7 +17,15 @@ type InputFormProps = {
 
 const InputForm = forwardRef(
 	(
-		{ labelProps, nameProps, typeProps, placeholderProps }: InputFormProps,
+		{
+			labelProps,
+			nameProps,
+			typeProps,
+			placeholderProps,
+			onTogglePassword,
+			isPasswordField = false,
+			passwordVisible = false,
+		}: InputFormProps,
 		ref: ForwardedRef<HTMLInputElement>
 	) => {
 		return (
@@ -26,6 +37,9 @@ const InputForm = forwardRef(
 					placeholderProps={placeholderProps}
 					// refProps={refProps}
 					ref={ref}
+					isPasswordField={isPasswordField}
+					passwordVisible={passwordVisible}
+					onTogglePassword={onTogglePassword}
 				/>
 			</div>
 		);

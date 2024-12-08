@@ -3,13 +3,12 @@ import CardProduct from '../components/Fragments/CardProduct.tsx';
 import Button from '../components/Elements/Button/Button.tsx';
 import { useEffect, useRef, useState } from 'react';
 import { getProducts, Product } from '../services/product.service.ts';
+import { getUserData } from '../services/auth.service.ts';
 
 export type Cart = Product & {
 	quantity: number;
 	total: number;
 };
-
-const emailLogin = localStorage.getItem('email');
 
 const ProductsPage = () => {
 	const [cart, setCart] = useState<Cart[]>([]);
@@ -18,6 +17,23 @@ const ProductsPage = () => {
 	const totalBillRef = useRef<HTMLTableRowElement>(null);
 	const [products, setProducts] = useState<Product[]>([]);
 	const [isLoading, setLoading] = useState<boolean>(false);
+	const [username, setUsername] = useState<string>('');
+
+	// listen token from local storage
+	useEffect(() => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			getUserData(token)
+				.then((data: string) => {
+					setUsername(data);
+				})
+				.catch((error) => {
+					console.error('Failed to fetch user data:', error);
+				});
+		} else {
+			window.location.href = '/';
+		}
+	}, [username]);
 
 	// listen data from endpoint
 	useEffect(() => {
@@ -106,6 +122,7 @@ const ProductsPage = () => {
 	const handleLogout = () => {
 		localStorage.removeItem('email');
 		localStorage.removeItem('password');
+		localStorage.removeItem('token');
 
 		window.location.href = '/';
 	};
@@ -121,7 +138,7 @@ const ProductsPage = () => {
 	return (
 		<Fragment>
 			<div className='flex justify-end h-20 bg-blue-600 text-white items-center px-5'>
-				{emailLogin}
+				{username}
 				<Button classNameProps='ml-5 bg-red-500' onClick={handleLogout}>
 					Logout
 				</Button>

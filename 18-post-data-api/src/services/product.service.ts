@@ -15,7 +15,7 @@ export type Product = {
 
 const baseURL = 'https://fakestoreapi.com';
 
-const api = axios.create({
+export const api = axios.create({
 	baseURL: `${baseURL}`,
 	headers: {
 		'Content-Type': 'application/json',
