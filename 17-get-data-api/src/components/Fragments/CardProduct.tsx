@@ -25,7 +25,7 @@ const CardHeader = (props: CardHeaderProps) => {
 			<img
 				src={props.srcProps}
 				alt={props.altProps}
-				className='p-8 rounded-t-lg'
+				className='p-8 rounded-t-lg h-60 w-full object-cover'
 			/>
 		</a>
 	);
@@ -41,9 +41,14 @@ const CardBody = (props: CardBodyProps) => {
 		<div className='px-5 pb-5 h-full'>
 			<a href=''>
 				<h5 className='text-xl font-semibold tracking-tight text-white'>
-					{props.titleProps}
+					{props.titleProps.substring(0, 20)} . . .
 				</h5>
-				<p className='text-s text-white'>{props.children}</p>
+				<p className='text-s text-white'>
+					{typeof props.children === 'string'
+						? props.children.substring(0, 50)
+						: ''}{' '}
+					. . .
+				</p>
 			</a>
 		</div>
 	);
@@ -60,9 +65,9 @@ const CardFooter = (props: CardFooterProps) => {
 	return (
 		<div className='flex items-center justify-between px-5 pb-5'>
 			<span className={'text-xl font-bold text-white'}>
-				{props.priceProps.toLocaleString('id-ID', {
+				{props.priceProps.toLocaleString('en-US', {
 					style: 'currency',
-					currency: 'IDR',
+					currency: 'USD',
 					maximumFractionDigits: 0,
 				})}
 			</span>

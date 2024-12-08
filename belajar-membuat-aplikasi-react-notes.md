@@ -91,3 +91,10 @@ JSON Parse = convert string to become json object
 JSON Stringfy = convert JSON object to become text string
 
 ====
+
+Fetch data with Fake API: <https://fakestoreapi.com/docs>
+
+- install library to fetch http
+npm install --save axios
+
+====
