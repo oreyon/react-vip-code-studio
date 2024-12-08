@@ -3,7 +3,7 @@ import CardProduct from '../components/Fragments/CardProduct.tsx';
 import Button from '../components/Elements/Button/Button.tsx';
 import { useEffect, useRef, useState } from 'react';
 import { getProducts, Product } from '../services/product.service.ts';
-import { getUserData } from '../services/auth.service.ts';
+import { useLogin } from '../hooks/useLogin.tsx';
 
 export type Cart = Product & {
 	quantity: number;
@@ -17,23 +17,7 @@ const ProductsPage = () => {
 	const totalBillRef = useRef<HTMLTableRowElement>(null);
 	const [products, setProducts] = useState<Product[]>([]);
 	const [isLoading, setLoading] = useState<boolean>(false);
-	const [username, setUsername] = useState<string>('');
-
-	// listen token from local storage
-	useEffect(() => {
-		const token = localStorage.getItem('token');
-		if (token) {
-			getUserData(token)
-				.then((data: string) => {
-					setUsername(data);
-				})
-				.catch((error) => {
-					console.error('Failed to fetch user data:', error);
-				});
-		} else {
-			window.location.href = '/';
-		}
-	}, [username]);
+	const username = useLogin();
 
 	// listen data from endpoint
 	useEffect(() => {
