@@ -1,9 +1,8 @@
 import { Fragment } from 'react/jsx-runtime';
 import CardProduct from '../components/Fragments/CardProduct.tsx';
-import Button from '../components/Elements/Button/Button.tsx';
 import { useEffect, useRef, useState } from 'react';
 import { getProducts, Product } from '../services/product.service.ts';
-import { useLogin } from '../hooks/useLogin.tsx';
+import Navbar from '../components/Layouts/Navbar.tsx';
 
 export type Cart = Product & {
 	quantity: number;
@@ -17,7 +16,6 @@ const ProductsPage = () => {
 	const totalBillRef = useRef<HTMLTableRowElement>(null);
 	const [products, setProducts] = useState<Product[]>([]);
 	const [isLoading, setLoading] = useState<boolean>(false);
-	const username = useLogin();
 
 	// listen data from endpoint
 	useEffect(() => {
@@ -103,13 +101,13 @@ const ProductsPage = () => {
 		}
 	};
 
-	const handleLogout = () => {
-		localStorage.removeItem('email');
-		localStorage.removeItem('password');
-		localStorage.removeItem('token');
+	// const handleLogout = () => {
+	// 	localStorage.removeItem('email');
+	// 	localStorage.removeItem('password');
+	// 	localStorage.removeItem('token');
 
-		window.location.href = '/';
-	};
+	// 	window.location.href = '/';
+	// };
 
 	if (isLoading) {
 		return (
@@ -121,12 +119,13 @@ const ProductsPage = () => {
 
 	return (
 		<Fragment>
-			<div className='flex justify-end h-20 bg-blue-600 text-white items-center px-5'>
+			{/* <div className='flex justify-end h-20 bg-blue-600 text-white items-center px-5'>
 				{username}
 				<Button classNameProps='ml-5 bg-red-500' onClick={handleLogout}>
 					Logout
 				</Button>
-			</div>
+			</div> */}
+			<Navbar />
 
 			<div className='flex justify-center py-5'>
 				<div className='w-4/6 flex flex-wrap'>

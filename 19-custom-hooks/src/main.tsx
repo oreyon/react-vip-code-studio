@@ -35,6 +35,11 @@ const router = createBrowserRouter([
 		element: <ProfilePage />,
 		errorElement: <NotFound />,
 	},
+	{
+		path: '/logout',
+		element: <LoginPage />,
+		errorElement: <NotFound />,
+	},
 ]);
 
 createRoot(document.getElementById('root')!).render(
