@@ -3,7 +3,12 @@
 - Initiate new project vite react typescript
 npm create vite@latest app-name -- --template react-ts
 npm install react-router-dom
+npm install --save axios
 npm install @fortawesome/fontawesome-free
+
+npm install -D @types/node
+npx shadcn@latest init
+npx shadcn@latest add button
 
 - Install Tailwind CSS
 npm install --save-dev tailwindcss postcss autoprefixer
@@ -11,11 +16,8 @@ npx tailwindcss init -p
 ===
 tailwind.config.js
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+module.exports = {
+  content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
     extend: {},
   },
@@ -32,6 +34,34 @@ index.css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+===
+
+===
+Edit tsconfig.json file tsconfig.json
+
+"compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+
+===
+Edit tsconfig.app.json file
+
+{
+  "compilerOptions": {
+    // ...
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+    // ...
+  }
+}
 
 ===
 
