@@ -3,10 +3,10 @@ import Input from './Input';
 import Label from './Label';
 
 type InputFormProps = {
-	labelProps?: string;
-	nameProps: string;
-	typeProps: string;
-	placeholderProps: string;
+	label?: string;
+	name: string;
+	type: string;
+	placeholder: string;
 	onTogglePassword?: () => void;
 	isPasswordField?: boolean;
 	passwordVisible?: boolean;
@@ -18,10 +18,10 @@ type InputFormProps = {
 const InputForm = forwardRef(
 	(
 		{
-			labelProps,
-			nameProps,
-			typeProps,
-			placeholderProps,
+			label,
+			name,
+			type,
+			placeholder,
 			onTogglePassword,
 			isPasswordField = false,
 			passwordVisible = false,
@@ -30,11 +30,11 @@ const InputForm = forwardRef(
 	) => {
 		return (
 			<div className='mb-6'>
-				<Label htmlforProps={nameProps}>{labelProps}</Label>
+				<Label htmlFor={name}>{label}</Label>
 				<Input
-					nameProps={nameProps}
-					typeProps={typeProps}
-					placeholderProps={placeholderProps}
+					name={name}
+					type={type}
+					placeholder={placeholder}
 					// refProps={refProps}
 					ref={ref}
 					isPasswordField={isPasswordField}
