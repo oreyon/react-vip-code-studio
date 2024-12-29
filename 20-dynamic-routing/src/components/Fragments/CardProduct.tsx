@@ -15,18 +15,18 @@ const CardProduct = (props: CardProductProps) => {
 };
 
 type CardHeaderProps = {
-	idProps: number;
-	hrefProps: string;
-	srcProps: string;
-	altProps: string;
+	id: number;
+	href: string;
+	src: string;
+	alt: string;
 };
 
 const CardHeader = (props: CardHeaderProps) => {
 	return (
-		<Link to={`/products/${props.idProps}`} className='block'>
+		<Link to={`/products/${props.id}`} className='block'>
 			<img
-				src={props.srcProps}
-				alt={props.altProps}
+				src={props.src}
+				alt={props.alt}
 				className='p-8 rounded-t-lg h-60 w-full object-cover'
 			/>
 		</Link>
@@ -34,7 +34,7 @@ const CardHeader = (props: CardHeaderProps) => {
 };
 
 type CardBodyProps = {
-	titleProps: string;
+	title: string;
 	children?: React.ReactNode;
 };
 
@@ -43,7 +43,7 @@ const CardBody = (props: CardBodyProps) => {
 		<div className='px-5 pb-5 h-full'>
 			<a href=''>
 				<h5 className='text-xl font-semibold tracking-tight text-white'>
-					{props.titleProps.substring(0, 20)} . . .
+					{props.title.substring(0, 20)} . . .
 				</h5>
 				<p className='text-s text-white'>
 					{typeof props.children === 'string'
@@ -57,23 +57,23 @@ const CardBody = (props: CardBodyProps) => {
 };
 
 type CardFooterProps = {
-	idProps: number;
-	priceProps: number;
-	addToCartProps?: () => void;
-	buyNowProps?: () => void;
+	id: number;
+	price: number;
+	addToCart?: () => void;
+	buyNow?: () => void;
 };
 
 const CardFooter = (props: CardFooterProps) => {
 	return (
 		<div className='flex items-center justify-between px-5 pb-5'>
 			<span className={'text-xl font-bold text-white'}>
-				{props.priceProps.toLocaleString('en-US', {
+				{props.price.toLocaleString('en-US', {
 					style: 'currency',
 					currency: 'USD',
 					maximumFractionDigits: 0,
 				})}
 			</span>
-			<Button className='bg-blue-600' onClick={props.addToCartProps}>
+			<Button className='bg-blue-600' onClick={props.addToCart}>
 				Add To Cart
 			</Button>
 		</div>

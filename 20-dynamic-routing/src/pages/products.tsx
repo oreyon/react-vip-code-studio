@@ -124,18 +124,18 @@ const ProductsPage = () => {
 						products.map((product: Product) => (
 							<CardProduct key={product.id}>
 								<CardProduct.Header
-									idProps={product.id}
-									hrefProps={'#'}
-									srcProps={product.image}
-									altProps={product.title}
+									id={product.id}
+									href={'#'}
+									src={product.image}
+									alt={product.title}
 								/>
-								<CardProduct.Body titleProps={product.title}>
+								<CardProduct.Body title={product.title}>
 									{product.description}
 								</CardProduct.Body>
 								<CardProduct.Footer
-									idProps={product.id}
-									priceProps={product.price}
-									addToCartProps={() => handleAddToCart(product)}
+									id={product.id}
+									price={product.price}
+									addToCart={() => handleAddToCart(product)}
 								/>
 							</CardProduct>
 						))}
