@@ -68,3 +68,20 @@ export const getProducts = async (): Promise<Product[]> => {
 		throw error;
 	}
 };
+
+export const getDetailProduct = async (id: number) => {
+	try {
+		const response = await api.get<Product>(`/products/${id}`);
+		if (response.status !== 200) {
+			throw new Error(`Failed to fetch product: ${response.statusText}`);
+		}
+		return response.data;
+	} catch (error: unknown) {
+		if (axios.isAxiosError(error)) {
+			throw new Error(`Failed to fetch product: ${error.message}`);
+		} else {
+			console.log('Unexpected error:', error);
+		}
+		throw error;
+	}
+};

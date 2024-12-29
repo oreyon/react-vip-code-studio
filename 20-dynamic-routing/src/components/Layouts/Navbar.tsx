@@ -51,6 +51,7 @@ const Navbar = () => {
 							<NavigationMenuList>
 								{navigation.map((item) => (
 									<Link
+										key={item.name}
 										to={item.href}
 										className='block rounded px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-slate-700'>
 										{item.name}

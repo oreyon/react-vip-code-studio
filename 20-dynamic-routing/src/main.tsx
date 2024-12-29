@@ -8,6 +8,7 @@ import RegisterPage from './pages/register.tsx';
 import NotFound from './pages/notfound.tsx';
 import ProductsPage from './pages/products.tsx';
 import ProfilePage from './pages/profile.tsx';
+import DetailProductPage from './pages/detailProduct.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -38,6 +39,11 @@ const router = createBrowserRouter([
 	{
 		path: '/logout',
 		element: <LoginPage />,
+		errorElement: <NotFound />,
+	},
+	{
+		path: '/products/:id',
+		element: <DetailProductPage />,
 		errorElement: <NotFound />,
 	},
 ]);

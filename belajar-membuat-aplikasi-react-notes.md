@@ -2,6 +2,7 @@
 
 - Initiate new project vite react typescript
 npm create vite@latest app-name -- --template react-ts
+pnpm create vite app-name --template react-ts
 npm install react-router-dom
 npm install --save axios
 npm install @fortawesome/fontawesome-free

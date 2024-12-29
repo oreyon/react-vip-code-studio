@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from '../Elements/Button/Button.tsx';
 import React from 'react';
 
@@ -14,6 +15,7 @@ const CardProduct = (props: CardProductProps) => {
 };
 
 type CardHeaderProps = {
+	idProps: number;
 	hrefProps: string;
 	srcProps: string;
 	altProps: string;
@@ -21,13 +23,13 @@ type CardHeaderProps = {
 
 const CardHeader = (props: CardHeaderProps) => {
 	return (
-		<a href={props.hrefProps}>
+		<Link to={`/products/${props.idProps}`} className='block'>
 			<img
 				src={props.srcProps}
 				alt={props.altProps}
 				className='p-8 rounded-t-lg h-60 w-full object-cover'
 			/>
-		</a>
+		</Link>
 	);
 };
 
@@ -71,7 +73,7 @@ const CardFooter = (props: CardFooterProps) => {
 					maximumFractionDigits: 0,
 				})}
 			</span>
-			<Button classNameProps={'bg-blue-600'} onClick={props.addToCartProps}>
+			<Button className='bg-blue-600' onClick={props.addToCartProps}>
 				Add To Cart
 			</Button>
 		</div>

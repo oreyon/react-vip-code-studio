@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getUserData } from '../services/auth.service';
+import { Link } from 'react-router-dom';
 
 export const useLogin = () => {
 	const [username, setUsername] = useState<string>('');
@@ -16,7 +17,7 @@ export const useLogin = () => {
 					console.error('Failed to fetch user data:', error);
 				});
 		} else {
-			window.location.href = '/';
+			<Link to='/' />;
 		}
 	}, []);
 

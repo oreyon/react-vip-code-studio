@@ -20,15 +20,6 @@ const ProductsPage = () => {
 	// listen data from endpoint
 	useEffect(() => {
 		setLoading(true);
-
-		// manual fetch
-		// fetchProducts()
-		// 	.then((data: Product[]) => {
-		// 		setProducts(data);
-		// 	})
-		// 	.catch((error) => console.error('Failed to fetch products:', error))
-		// 	.finally(() => setLoading(false));
-
 		// axios fetch
 		getProducts()
 			.then((data: Product[]) => {
@@ -133,6 +124,7 @@ const ProductsPage = () => {
 						products.map((product: Product) => (
 							<CardProduct key={product.id}>
 								<CardProduct.Header
+									idProps={product.id}
 									hrefProps={'#'}
 									srcProps={product.image}
 									altProps={product.title}
