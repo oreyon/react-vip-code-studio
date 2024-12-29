@@ -73,23 +73,23 @@ const FormLogin = () => {
 	return (
 		<form action='' onSubmit={handleLogin}>
 			<InputForm
-				labelProps='Username'
-				nameProps='username'
-				typeProps='text'
-				placeholderProps='your-username'
+				label='Username'
+				name='username'
+				type='text'
+				placeholder='your-username'
 				// refProps={emailRef}
 				ref={usernameRef}
 			/>
 			<InputForm
-				labelProps='Password'
-				nameProps='password'
-				typeProps={passwordType}
-				placeholderProps='*******'
+				label='Password'
+				name='password'
+				type={passwordType}
+				placeholder='*******'
 				onTogglePassword={togglePasswordVisibility}
 				isPasswordField={true}
 				passwordVisible={passwordVisible}
 			/>
-			<Button typeProps='submit' classNameProps='bg-blue-600 w-full'>
+			<Button type='submit' className='bg-blue-600 w-full'>
 				Login
 			</Button>
 			{error && <p className='text-red-500 text-center mt-5'>{error}</p>}
