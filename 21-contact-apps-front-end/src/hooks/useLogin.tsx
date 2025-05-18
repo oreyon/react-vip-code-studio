@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react';
-import { getUserData } from '../services/auth.service';
+import { getCurrentUser, UserData } from '../services/auth.service';
+import { AxiosError } from 'axios';
 
-export const useLogin = () => {
-	const [username, setUsername] = useState<string>('');
+const useLogin = (): string => {
+	const [username, setUsername] = useState<string>(''); // Default is an empty string
 
-	// listen token from local storage
 	useEffect(() => {
-		const token = localStorage.getItem('token');
-		if (token) {
-			getUserData(token)
-				.then((data: string) => {
-					setUsername(data);
-				})
-				.catch((error) => {
-					console.error('Failed to fetch user data:', error);
-				});
-		} else {
-			window.location.href = '/';
-		}
-	}, []);
+		getCurrentUser()
+			.then((data: UserData) => {
+				setUsername(data.username);
+			})
+			.catch((error: AxiosError) => {
+				console.error('Error fetching user:', error.message);
+			});
+	}, []); // Empty dependency array ensures this runs once on component mount
 
 	return username;
 };
+
+export default useLogin;

@@ -1,4 +1,4 @@
-import Navbar from '../components/Layouts/Navbar';
+// import Navbar from '../components/Layouts/Navbar';
 import { Button } from '../components/ui/button';
 import {
 	Card,
@@ -7,8 +7,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from '../components/ui/card';
-import { useLogin } from '../hooks/useLogin';
-import { useLogout } from '../hooks/useLogout';
+import useLogin from "@/hooks/useLogin.tsx";
+import useLogout from "@/hooks/useLogout.tsx";
+// import { useAuth } from '../context/AuthContext';
 
 const ProfilePage = () => {
 	const username = useLogin();
@@ -16,7 +17,7 @@ const ProfilePage = () => {
 
 	return (
 		<div>
-			<Navbar />
+			{/* <Navbar /> */}
 			<div className='flex justify-center items-center min-h-screen bg-gray-50 p-5'>
 				<Card className='max-w-md w-full shadow-lg'>
 					<CardHeader>
@@ -28,7 +29,7 @@ const ProfilePage = () => {
 					<CardContent className='space-y-4'>
 						<div>
 							<p className='text-gray-700 font-medium'>
-								Username: <span>{username || 'Guest'}</span>
+								Username: <span>{username}</span>
 							</p>
 						</div>
 						<Button variant='destructive' onClick={logout}>

@@ -1,10 +1,16 @@
-export const useLogout = () => {
-	const logout = () => {
-		localStorage.removeItem('email');
-		localStorage.removeItem('password');
-		localStorage.removeItem('token');
-		window.location.href = '/';
+import { logout } from '../services/auth.service';
+
+const useLogout = () => {
+	const handleLogout = async () => {
+		try {
+			await logout();
+			window.location.href = '/login';
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
-	return logout;
+	return handleLogout;
 };
+
+export default useLogout;

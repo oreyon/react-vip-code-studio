@@ -4,15 +4,15 @@ import InputForm from '../Elements/Input';
 import { login } from '../../services/auth.service';
 
 const FormLogin = () => {
-	const usernameRef = useRef<HTMLInputElement>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [error, setError] = useState<string | null>(null);
 	const [passwordType, setPasswordType] = useState<string>('password');
 	const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
 	useEffect(() => {
 		// focus on email input when component is mounted
-		if (usernameRef.current) {
-			usernameRef.current.focus();
+		if (inputRef.current) {
+			inputRef.current.focus();
 		}
 	}, []);
 
@@ -47,19 +47,15 @@ const FormLogin = () => {
 		// window.location.href = '/products';
 
 		const data = {
-			username: event.target.username.value,
+			email: event.target.email.value,
 			password: event.target.password.value,
 		};
 
 		try {
 			await login(data);
-			console.log('Login success');
+			console.log('Login success in FormLogin.tsx');
 		} catch (error: unknown) {
-			if (typeof error === 'object' && error && 'message' in error) {
-				setError((error as { message: string }).message);
-			} else {
-				setError('An unexpected error occurred. Please try again.');
-			}
+			if (error instanceof Error) setError(error.message);
 		}
 	};
 
@@ -73,12 +69,12 @@ const FormLogin = () => {
 	return (
 		<form action='' onSubmit={handleLogin}>
 			<InputForm
-				label='Username'
-				name='username'
-				type='text'
-				placeholder='your-username'
+				label='Email'
+				name='email'
+				type='email'
+				placeholder='your-email'
 				// refProps={emailRef}
-				ref={usernameRef}
+				ref={inputRef}
 			/>
 			<InputForm
 				label='Password'

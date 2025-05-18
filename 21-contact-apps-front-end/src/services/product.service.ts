@@ -1,4 +1,5 @@
 import axios from 'axios';
+import api from './axios.service';
 
 export type Product = {
 	id: number;
@@ -11,45 +12,6 @@ export type Product = {
 		rate: number;
 		count: number;
 	};
-};
-
-const baseURL = 'http://localhost:3000/api/v1';
-
-export const api = axios.create({
-	baseURL: `${baseURL}`,
-	headers: {
-		'Content-Type': 'application/json',
-	},
-	withCredentials: false,
-});
-
-// using manual fetch
-const api2 = async (
-	endpoint: string,
-	options: RequestInit = {}
-): Promise<Response> => {
-	const { headers, ...rest } = options;
-	return fetch(`${baseURL}${endpoint}`, {
-		headers: {
-			'Content-Type': 'application/json',
-			...headers, // Merge additional headers
-		},
-		...rest, // Spread the rest of the options like method, body, etc.
-	});
-};
-
-export const fetchProducts = async (): Promise<Product[]> => {
-	try {
-		const response = await api2('/products'); // Using custom fetch wrapper
-		if (!response.ok) {
-			throw new Error(`Failed to fetch products: ${response.statusText}`);
-		}
-		const data = (await response.json()) as Product[];
-		return data;
-	} catch (error) {
-		console.error('Error fetching products:', error);
-		throw error;
-	}
 };
 
 export const getProducts = async (): Promise<Product[]> => {

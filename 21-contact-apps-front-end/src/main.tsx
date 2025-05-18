@@ -10,6 +10,7 @@ import ProductsPage from './pages/products.tsx';
 import ProfilePage from './pages/profile.tsx';
 import DetailProductPage from './pages/detailProduct.tsx';
 import DashboardPage from './pages/dashboard.tsx';
+// import { AuthProvider } from './context/AuthContext.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -56,6 +57,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
+		 {/*<AuthProvider>*/}
 		<RouterProvider router={router} />
+		 {/*</AuthProvider>*/}
 	</StrictMode>
 );

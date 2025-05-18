@@ -15,9 +15,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import { Link } from 'react-router-dom';
+import useLogin from "@/hooks/useLogin.tsx";
+import useLogout from "@/hooks/useLogout.tsx";
 
-import { useLogin } from '../../hooks/useLogin';
-import { useLogout } from '../../hooks/useLogout';
+// import { useAuth } from '../../context/AuthContext';
 
 const navigation = [
 	{ name: 'Dashboard', href: '/dashboard' },
