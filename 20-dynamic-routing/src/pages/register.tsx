@@ -4,7 +4,7 @@ import AuthLayouts from '../components/Layouts/AuthLayouts';
 const RegisterPage = () => {
 	return (
 		<div className='flex justify-center items-center min-h-screen gap-x-3'>
-			<AuthLayouts titleProps='Register' typeProps='register'>
+			<AuthLayouts title='Register' type='register'>
 				<FormRegister />
 			</AuthLayouts>
 		</div>

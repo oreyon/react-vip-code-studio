@@ -34,6 +34,7 @@ const CardHeader = (props: CardHeaderProps) => {
 };
 
 type CardBodyProps = {
+	id: number;
 	title: string;
 	children?: React.ReactNode;
 };
@@ -41,17 +42,17 @@ type CardBodyProps = {
 const CardBody = (props: CardBodyProps) => {
 	return (
 		<div className='px-5 pb-5 h-full'>
-			<a href=''>
+			<Link to={`/products/${props.id}`}>
 				<h5 className='text-xl font-semibold tracking-tight text-white'>
 					{props.title.substring(0, 20)} . . .
 				</h5>
-				<p className='text-s text-white'>
-					{typeof props.children === 'string'
-						? props.children.substring(0, 50)
-						: ''}{' '}
-					. . .
-				</p>
-			</a>
+			</Link>
+			<p className='text-s text-white'>
+				{typeof props.children === 'string'
+					? props.children.substring(0, 50)
+					: ''}{' '}
+				. . .
+			</p>
 		</div>
 	);
 };

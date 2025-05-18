@@ -1,4 +1,5 @@
 import axios from 'axios';
+import environment from "@/config/environment.ts";
 
 export type Product = {
 	id: number;
@@ -13,7 +14,7 @@ export type Product = {
 	};
 };
 
-const baseURL = 'https://fakestoreapi.com';
+const baseURL = environment.BACKEND_API_URL;
 
 export const api = axios.create({
 	baseURL: `${baseURL}`,

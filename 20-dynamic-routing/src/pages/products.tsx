@@ -125,11 +125,11 @@ const ProductsPage = () => {
 							<CardProduct key={product.id}>
 								<CardProduct.Header
 									id={product.id}
-									href={'#'}
+									href={'/products/' + product.id}
 									src={product.image}
 									alt={product.title}
 								/>
-								<CardProduct.Body title={product.title}>
+								<CardProduct.Body id={product.id} title={product.title}>
 									{product.description}
 								</CardProduct.Body>
 								<CardProduct.Footer

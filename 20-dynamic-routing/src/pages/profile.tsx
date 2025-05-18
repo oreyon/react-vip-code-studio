@@ -7,8 +7,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from '../components/ui/card';
-import { useLogin } from '../hooks/useLogin';
-import { useLogout } from '../hooks/useLogout';
+import useLogin from "@/hooks/useLogin.tsx";
+import useLogout from "@/hooks/useLogout.tsx";
+
 
 const ProfilePage = () => {
 	const username = useLogin();

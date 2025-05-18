@@ -9,11 +9,17 @@ import NotFound from './pages/notfound.tsx';
 import ProductsPage from './pages/products.tsx';
 import ProfilePage from './pages/profile.tsx';
 import DetailProductPage from './pages/detailProduct.tsx';
+import DashboardPage from './pages/dashboard.tsx';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <App />,
+		errorElement: <NotFound />,
+	},
+	{
+		path: '/dashboard',
+		element: <DashboardPage />,
 		errorElement: <NotFound />,
 	},
 	{

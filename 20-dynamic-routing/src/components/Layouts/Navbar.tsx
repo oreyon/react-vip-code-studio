@@ -16,8 +16,8 @@ import {
 
 import { Link } from 'react-router-dom';
 
-import { useLogin } from '../../hooks/useLogin';
-import { useLogout } from '../../hooks/useLogout';
+import useLogin from "@/hooks/useLogin.tsx";
+import useLogout from "@/hooks/useLogout.tsx";
 
 const navigation = [
 	{ name: 'Dashboard', href: '/dashboard' },
