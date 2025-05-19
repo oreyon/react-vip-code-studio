@@ -1,4 +1,7 @@
 react_jwt_auth
+.env
+.env.local
+
 
 # Logs
 logs
